@@ -34,8 +34,7 @@ After I finally reached my room, I started working on this open-source tool to s
 ### 📸 Screenshot
 
 *A screenshot of the application in action.*
-![Map Converter Screenshot](<img width="1916" height="1161" alt="image" src="https://github.com/user-attachments/assets/da8a81ab-9d41-4f77-8fcb-571b2f7f8ec4" />
-)  
+![Map Converter Screenshot](https://ibb.co/dsY28WBk)  
 
 ---
 
