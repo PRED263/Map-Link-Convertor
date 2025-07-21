@@ -7,7 +7,7 @@
 
 A simple, open-source web tool to seamlessly convert between Apple Maps and Google Maps links. Built to solve a real-world frustration with a clean and efficient solution.
 
-**Check out the live tool here:** [**your-username.github.io/map-link-converter**](https://your-username.github.io/map-link-converter) 👈 *(Remember to replace this with your actual GitHub Pages link!)*
+**Check out the live tool here:** [**your-username.github.io/map-link-converter**](https://pred263.github.io/Map-Link-Convertor/) 👈 
 
 ---
 
@@ -34,7 +34,8 @@ After I finally reached my room, I started working on this open-source tool to s
 ### 📸 Screenshot
 
 *A screenshot of the application in action.*
-![Map Converter Screenshot](https://i.imgur.com/gHh1gA7.png)  *(You should replace this with your own screenshot!)*
+![Map Converter Screenshot](<img width="1916" height="1161" alt="image" src="https://github.com/user-attachments/assets/da8a81ab-9d41-4f77-8fcb-571b2f7f8ec4" />
+)  
 
 ---
 
