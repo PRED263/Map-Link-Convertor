@@ -34,7 +34,7 @@ After I finally reached my room, I started working on this open-source tool to s
 ### 📸 Screenshot
 
 *A screenshot of the application in action.*
-![Map Converter Screenshot](https://i.ibb.co/dsY28WBk/Screenshot-2025-07-21-193847.jpg)
+![Screenshot 2025-07-21 193847](https://github.com/user-attachments/assets/f55ed947-1bb6-4830-b1e1-56e8e9975ef6)
 
 ---
 
@@ -66,6 +66,12 @@ Want to run this project on your own machine? It's easy!
     The best way to run this is with a live server to avoid any potential issues. If you're using VS Code, I recommend the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension.
     * Install the extension.
     * Right-click on `index.html` and select "Open with Live Server".
+  
+4. **Some examples to test it**
+   * https://maps.apple.com/?q=SRM%20Institute%20of%20Science%20and%20Technology
+   * http://maps.apple.com/?ll=12.823,80.044
+   * https://maps.apple.com/?q=Nijo%20Castle
+   * http://maps.apple.com/?ll=35.014,135.748
 
 ---
 
