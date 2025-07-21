@@ -34,7 +34,7 @@ After I finally reached my room, I started working on this open-source tool to s
 ### 📸 Screenshot
 
 *A screenshot of the application in action.*
-![Map Converter Screenshot](<a href="https://ibb.co/dsY28WBk"><img src="https://i.ibb.co/dsY28WBk/Screenshot-2025-07-21-193847.jpg" alt="Screenshot-2025-07-21-193847" border="0" /></a>)  
+![Map Converter Screenshot](https://i.ibb.co/dsY28WBk/Screenshot-2025-07-21-193847.jpg)
 
 ---
 
@@ -54,7 +54,7 @@ Want to run this project on your own machine? It's easy!
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://pred263.github.io/Map-Link-Convertor/](https://pred263.github.io/Map-Link-Convertor/)
+    git clone [https://github.com/pred263/Map-Link-Convertor.git](https://github.com/pred263/Map-Link-Convertor.git)
     ```
 
 2.  **Navigate to the project directory:**
