@@ -21,7 +21,7 @@ let marker;
 document.addEventListener('DOMContentLoaded', () => {
     initMap();
     updateUIForDirection();
-    
+
     // --- Event Listeners ---
     convertBtn.addEventListener('click', handleConversion);
     copyBtn.addEventListener('click', copyToClipboard);
@@ -44,11 +44,9 @@ function initMap() {
     map = L.map('map').setView([20, 0], 2); // Default view
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // FIX: Sometimes the map initializes before the container has a size.
-    // This ensures the map size is recalculated after a brief moment.
     setTimeout(() => {
         map.invalidateSize();
     }, 100);
@@ -63,7 +61,6 @@ function updateMap(lat, lon) {
     if (marker) {
         map.removeLayer(marker);
     }
-    // FIX: Ensure map size is correct before setting the view, in case the layout changed.
     map.invalidateSize();
     map.setView([lat, lon], 15);
     marker = L.marker([lat, lon]).addTo(map)
@@ -95,7 +92,7 @@ function updateUIForDirection() {
     } else {
         inputLabel.textContent = 'Google Maps Link or Coordinates';
         outputLabel.textContent = 'Apple Maps Link';
-        mapLinkInput.placeholder = 'e.g., https://www.google.com/maps?q=34.0522,-118.2437';
+        mapLinkInput.placeholder = 'e.g., https://www.google.com/maps/search/?api=1&query=Eiffel+Tower';
         googleToAppleBtn.classList.add('bg-white', 'text-blue-600', 'shadow');
         appleToGoogleBtn.classList.remove('bg-white', 'text-blue-600', 'shadow');
     }
@@ -130,7 +127,6 @@ function handleInput() {
     if (mapLinkInput.value.length > 0) {
         clearInputBtn.classList.remove('hidden');
     } else {
-        // If user manually clears the input, also reset the view.
         resetView();
     }
 }
@@ -153,9 +149,9 @@ function handleConversion() {
     if (conversionDirection === 'apple-to-google') {
         locationData = parseAppleInput(input);
         if (locationData) {
-            outputUrl = locationData.query 
-                ? `https://www.google.com/maps?q=${encodeURIComponent(locationData.query)}`
-                : `https://www.google.com/maps?q=${locationData.lat},${locationData.lon}`;
+            outputUrl = locationData.query
+                ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationData.query)}`
+                : `https://www.google.com/maps/?q=${locationData.lat},${locationData.lon}`;
         }
     } else { // google-to-apple
         locationData = parseGoogleInput(input);
@@ -168,6 +164,7 @@ function handleConversion() {
 
     if (locationData && outputUrl) {
         displayResult(outputUrl);
+        // Only update the map if we have coordinates
         if (locationData.lat && locationData.lon) {
             updateMap(parseFloat(locationData.lat), parseFloat(locationData.lon));
         }
@@ -194,8 +191,6 @@ function parseAppleInput(input) {
             }
             if (params.has('q')) {
                 const q = params.get('q');
-                match = q.match(coordRegex);
-                if(match) return { lat: match[1], lon: match[2] };
                 return { query: q };
             }
             if (params.has('address')) return { query: params.get('address') };
@@ -215,11 +210,11 @@ function parseGoogleInput(input) {
     try {
         const url = new URL(input);
         const params = url.searchParams;
-        if (params.has('q')) {
-            const q = params.get('q');
-            match = q.match(coordRegex);
+        const queryParam = params.get('q') || params.get('query'); // Check for 'q' or 'query'
+        if (queryParam) {
+            match = queryParam.match(coordRegex);
             if (match) return { lat: match[1], lon: match[2] };
-            return { query: q };
+            return { query: queryParam };
         }
          if (params.has('ll')) {
             const [lat, lon] = params.get('ll').split(',');
@@ -242,19 +237,16 @@ function displayResult(link) {
 }
 
 function copyToClipboard() {
-    // A workaround for clipboard API in secure contexts/iframes
-    const textarea = document.createElement('textarea');
-    textarea.value = outputLink.value;
-    document.body.appendChild(textarea);
-    textarea.select();
+    outputLink.select();
+    outputLink.setSelectionRange(0, 99999); 
     try {
         document.execCommand('copy');
         copyFeedback.textContent = 'Copied!';
         setTimeout(() => { copyFeedback.textContent = ''; }, 2000);
     } catch (err) {
         copyFeedback.textContent = 'Failed to copy';
+        console.error('Failed to copy text: ', err);
     }
-    document.body.removeChild(textarea);
 }
 
 function showError(message) {
